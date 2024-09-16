@@ -41,6 +41,15 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
         } catch (e) {
           _result = 'Error';
         }
+      } else if (text == 'x²') {
+        try {
+          double value = double.parse(_expression);
+          _result = (value * value).toString();
+        } catch (e) {
+          _result = 'Error';
+        }
+      } else if (text == '%') {
+        _expression += '%';
       } else {
         _expression += text;
       }
@@ -53,7 +62,6 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
         onPressed: () => _onPressed(text),
         style: ElevatedButton.styleFrom(
           padding: EdgeInsets.all(24.0),
-          //primary: color,
         ),
         child: Text(
           text,
@@ -121,6 +129,12 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
               _buildButton('C', Colors.red),
               _buildButton('=', Colors.green),
               _buildButton('+', Colors.blue),
+            ],
+          ),
+          Row(
+            children: <Widget>[
+              _buildButton('x²', Colors.orange), // Square button
+              _buildButton('%', Colors.orange), // Modulo button
             ],
           ),
         ],
